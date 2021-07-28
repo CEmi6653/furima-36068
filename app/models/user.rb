@@ -12,7 +12,7 @@ class User < ApplicationRecord
     validates :kana_last_name  
     validates :kana_first_name 
   end
-  with_options format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/ } do
+  with_options format: {with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/ } do
     validates :last_name
     validates :first_name
   end
@@ -20,6 +20,7 @@ class User < ApplicationRecord
     validates :kana_last_name
     validates :kana_first_name
   end
-
+  
+  has_many :items
   
 end
