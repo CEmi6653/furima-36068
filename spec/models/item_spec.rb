@@ -42,7 +42,7 @@ RSpec.describe Item, type: :model do
       end
 
       it "カテゴリーid:1の{--}の場合保存ができない" do
-        @item.category_id = '1'
+        @item.category_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Category can't be blank")
       end
@@ -53,7 +53,7 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Quality can't be blank")
       end
       it "Quality_id:1の{--}の場合保存ができない" do
-        @item.quality_id = '1'
+        @item.quality_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Quality can't be blank")
       end
@@ -66,7 +66,7 @@ RSpec.describe Item, type: :model do
       end
 
       it "shipping_charge_id:1の{--}の場合保存ができない" do
-        @item.shipping_charge_id = '1'
+        @item.shipping_charge_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Shipping charge can't be blank")
       end
@@ -78,7 +78,7 @@ RSpec.describe Item, type: :model do
         
       end
       it "Delivery_source_id:1の{--}の場合保存ができない" do
-        @item.delivery_source_id = '1'
+        @item.delivery_source_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Delivery source can't be blank")
       end
@@ -91,7 +91,7 @@ RSpec.describe Item, type: :model do
       end
 
       it "Delivery_day_id:1の{--}の場合保存ができない" do
-        @item.delivery_day_id = '1'
+        @item.delivery_day_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Delivery day can't be blank")
       end
@@ -119,12 +119,12 @@ RSpec.describe Item, type: :model do
       end
 
       it "販売価格が300円以上でないと保存できない" do
-        @item.selling_price = '299'
+        @item.selling_price = 299
         @item.valid?
         expect(@item.errors.full_messages).to include("Selling price must be greater than or equal to 300")
      end
       it "販売価格が9999999円以下出ないと保存できない" do
-        @item.selling_price = '10000000'
+        @item.selling_price = 10000000
         @item.valid?
         expect(@item.errors.full_messages).to include("Selling price must be less than or equal to 9999999")
       end
