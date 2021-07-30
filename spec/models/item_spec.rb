@@ -41,39 +41,83 @@ RSpec.describe Item, type: :model do
         
       end
 
+      it "カテゴリーid:1の{--}の場合保存ができない" do
+        @item.category_id = '1'
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Category can't be blank")
+      end
+
       it "商品の状態がないと保存できない" do
         @item.quality_id = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Quality can't be blank")
       end
+      it "Quality_id:1の{--}の場合保存ができない" do
+        @item.quality_id = '1'
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Quality can't be blank")
+      end
+
 
       it "配送料の負担保存できない" do
         @item.shipping_charge_id = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Shipping charge can't be blank")
       end
+
+      it "shipping_charge_id:1の{--}の場合保存ができない" do
+        @item.shipping_charge_id = '1'
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Shipping charge can't be blank")
+      end
+
       it "発送元の地域がないと保存できない" do
         @item.delivery_source_id = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Delivery source can't be blank")
         
       end
+      it "Delivery_source_id:1の{--}の場合保存ができない" do
+        @item.delivery_source_id = '1'
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Delivery source can't be blank")
+      end
+
       it "発送までの日数がないと保存できない" do
         @item.delivery_day_id = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Delivery day can't be blank")
         
       end
+
+      it "Delivery_day_id:1の{--}の場合保存ができない" do
+        @item.delivery_day_id = '1'
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Delivery day can't be blank")
+      end
+
       it "販売価格がないと保存できない" do
         @item.selling_price = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Selling price can't be blank")
       end
-      it "販売価格が半角数字でないと保存できない" do
+      it "販売価格が全角数字だと保存できない" do
         @item.selling_price = '１２３４５６７'
         @item.valid?
         expect(@item.errors.full_messages).to include("Selling price is not a number")
       end
+      it "販売価格が半角英数混合では保存できない" do
+        @item.selling_price = '111aaa'
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Selling price is not a number")
+      end
+
+      it "販売価格が半角英語だけでは保存できない" do
+        @item.selling_price = 'abcdefg'
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Selling price is not a number")
+      end
+
       it "販売価格が300円以上でないと保存できない" do
         @item.selling_price = '299'
         @item.valid?
