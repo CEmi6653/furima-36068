@@ -1,7 +1,8 @@
 class Item < ApplicationRecord
   with_options presence:true do
-    validates :name
-    validates :explanation
+    validates :image
+    validates :name, length: { maximum: 40 }
+    validates :explanation, length: { maximum: 1000 }
     validates :category_id
     validates :quality_id
     validates :shipping_charge_id
