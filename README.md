@@ -19,7 +19,7 @@
 
 
 - has_many :items   ##itemsテーブルとのアソシエーション
-- has_many :purchases ##購入テーブルとのアソシエーション
+- has_one :purchase ##購入テーブルとのアソシエーション
 
 ## itemsテーブル
 
