@@ -1,7 +1,6 @@
 class DonationAddress
   include ActiveModel::Model
-    attr_accessor :postal_code, :municipalities, :building_name, :address, :telephone_number, :delivery_source_id, :user_id, :item_id
-  end
+  attr_accessor :postal_code, :municipalities, :building_name, :address, :telephone_number, :delivery_source_id, :user_id, :item_id
 
   with_options presence: true do
     validates :user_id
@@ -12,9 +11,7 @@ class DonationAddress
     validates :telephone_number
     validates :delivery_source_id, numericality: {other_than: 0, message: "can't be blank"}
   end
-  extend ActiveHash::Associations::ActiveRecordExtensions
-  belongs_to :delivery_source
-
+  
   def save
     order = Order.create(user_id: user_id, item_id: item_id)    
 

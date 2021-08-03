@@ -1,11 +1,13 @@
 class OrdersController < ApplicationController
-  fefore_action :authenticate_user!, except: :index
+  before_action :authenticate_user!, except: :index
 
   def index
+    @item = Item.find(params[:item_id])
     @donation_address = DonationAddress.new
-  end
+  end                   
 
   def create
+    @item = Item.find(params[:item_id])
     @donation_address = DonationAddress.new(order_params)
     if @donation_address.valid?
       @donation_address.save
@@ -18,6 +20,6 @@ class OrdersController < ApplicationController
   private
   
   def order_params
-    params.require(:donation_address).permit(:postal_code, :delivery_source_id, :municipalities, :address, :building_name, :telephone_number).merge(user_id: current_user.id, item_id: item.id)
+    params.permit(:postal_code, :delivery_source_id, :municipalities, :address, :building_name, :telephone_number).merge(user_id: current_user.id)
   end
 end
