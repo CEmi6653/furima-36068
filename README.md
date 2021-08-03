@@ -42,7 +42,7 @@
 -belongs_to :user
 -has_one :purchase
 
-## purchaseテーブル(購入テーブル)
+## orderテーブル(購入テーブル)
 
 |   Column            |  Type        |  Options                    |
 |---------------------|--------------|-----------------------------|
@@ -57,7 +57,7 @@
 -has_one :shipping_address
 
 
-## shipping_address 
+## order_address 
 
 |  Column             |  Type        |  Options                    |
 |---------------------|--------------|-----------------------------|
@@ -67,12 +67,12 @@
 | address             | string       | null: false                 |
 | building_name       | string       |                             |
 | telephone_number    | string       | null: false                 |
-| purchase            | references   | foreign_key: true           |
+| order               | references   | foreign_key: true           |
 
 
 ### Association 
 
--belongs_to :purchase
+-belongs_to :order
 
 
 
