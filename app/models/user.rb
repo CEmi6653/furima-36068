@@ -22,6 +22,6 @@ class User < ApplicationRecord
   end
   
   has_many :items
-  has_one :purchase
+  has_many :orders
   
 end

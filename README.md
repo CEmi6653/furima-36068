@@ -19,7 +19,7 @@
 
 
 - has_many :items   ##itemsテーブルとのアソシエーション
-- has_one :purchase ##購入テーブルとのアソシエーション
+- has_many :order ##購入テーブルとのアソシエーション
 
 ## itemsテーブル
 
@@ -40,9 +40,9 @@
 ### Association 
 
 -belongs_to :user
--has_one :purchase
+-has_one :order
 
-## purchaseテーブル(購入テーブル)
+## orderテーブル(購入テーブル)
 
 |   Column            |  Type        |  Options                    |
 |---------------------|--------------|-----------------------------|
@@ -54,10 +54,10 @@
 
 -belongs_to :user
 -belongs_to :item
--has_one :shipping_address
+-has_one :order_address
 
 
-## shipping_address 
+## order_address 
 
 |  Column             |  Type        |  Options                    |
 |---------------------|--------------|-----------------------------|
@@ -67,12 +67,12 @@
 | address             | string       | null: false                 |
 | building_name       | string       |                             |
 | telephone_number    | string       | null: false                 |
-| purchase            | references   | foreign_key: true           |
+| order               | references   | foreign_key: true           |
 
 
 ### Association 
 
--belongs_to :purchase
+-belongs_to :order
 
 
 
