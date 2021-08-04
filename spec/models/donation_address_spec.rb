@@ -40,6 +40,12 @@ RSpec.describe DonationAddress, type: :model do
         @donation_address.valid?
         expect(@donation_address.errors.full_messages).to include("Postal code is invalid. Include hyphen(-)")
       end
+      
+      it '郵便番号はハイフンなしでは保存できない' do
+        @donation_address.postal_code = '1234567'
+        @donation_address.valid?
+        expect(@donation_address.errors.full_messages).to include("Postal code is invalid. Include hyphen(-)")
+      end
        
       it '都道府県が空だと保存できない' do
         @donation_address.delivery_source_id = ''
@@ -75,6 +81,18 @@ RSpec.describe DonationAddress, type: :model do
         @donation_address.token = nil
         @donation_address.valid?
         expect(@donation_address.errors.full_messages).to include("Token can't be blank")  
+      end
+
+      it 'user_idが空だと保存できない' do
+        @donation_address.user_id = ''
+        @donation_address.valid?
+        expect(@donation_address.errors.full_messages).to include("User can't be blank")
+      end
+
+      it 'item_idが空だと保存できない' do
+        @donation_address.item_id = ''
+        @donation_address.valid?
+        expect(@donation_address.errors.full_messages).to include("Item can't be blank")
       end
 
 

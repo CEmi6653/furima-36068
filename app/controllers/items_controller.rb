@@ -23,9 +23,9 @@ class ItemsController < ApplicationController
 
   def show
   end
+
   def edit
-    @donation_address = DonationAddress.new
-    if @donation_address.save
+    if @item.order.present?
       redirect_to root_path
     end
   end
