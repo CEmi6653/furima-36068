@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_item, only: [:index, :create]
-  before_action :Deliberation_item_order, only: [:index, :create]
+  before_action :deliberation_item_order, only: [:index, :create]
 
   def index
     @donation_address = DonationAddress.new
@@ -40,7 +40,7 @@ class OrdersController < ApplicationController
     @item = Item.find(params[:item_id])
   end
 
-  def Deliberation_item_order
+  def deliberation_item_order
     if current_user == @item.user
       redirect_to root_path
     elsif @item.order.present?
