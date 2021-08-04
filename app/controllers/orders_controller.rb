@@ -1,15 +1,11 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_item, only: [:index, :create]
- 
+  before_action :Deliberation_item_order, only: [:index, :create]
 
   def index
     @donation_address = DonationAddress.new
-    if current_user == @item.user
-      redirect_to root_path
-    elsif @item.order.present?
-      redirect_to root_path
-    end
+   
     
   end
 
@@ -42,6 +38,14 @@ class OrdersController < ApplicationController
 
   def set_item
     @item = Item.find(params[:item_id])
+  end
+
+  def Deliberation_item_order
+    if current_user == @item.user
+      redirect_to root_path
+    elsif @item.order.present?
+      redirect_to root_path
+    end
   end
   
   

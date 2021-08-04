@@ -53,6 +53,12 @@ RSpec.describe DonationAddress, type: :model do
         expect(@donation_address.errors.full_messages).to include("Delivery source can't be blank")
       end
 
+      it '都道府県のidが0だと登録できない' do
+        @donation_address.delivery_source_id = 0
+        @donation_address.valid?
+        expect(@donation_address.errors.full_messages).to include("Delivery source can't be blank")
+      end
+
       it '番地が空だと保存できない' do
         @donation_address.address = ''
         @donation_address.valid?
