@@ -5,8 +5,8 @@ RSpec.describe DonationAddress, type: :model do
     before do
       user = FactoryBot.create(:user)
       item = FactoryBot.create(:item)
-      @donation_address = FactoryBot.build(:donation_address, user_id: user.id, item_id: item.id)
-      sleep 0.1 
+      @donation_address = FactoryBot.build(:donation_address, user_id: user.id, item_id: item.id,)
+      sleep 0.1
     end
 
 
@@ -19,6 +19,12 @@ RSpec.describe DonationAddress, type: :model do
         @donation_address.building_name = ''
         expect(@donation_address).to be_valid
       end
+
+      it '全ての値とtokenがあれば保存できる' do
+        expect(@donation_address).to be_valid
+      end
+
+      
 
     end
 
@@ -64,6 +70,14 @@ RSpec.describe DonationAddress, type: :model do
         @donation_address.valid?
         expect(@donation_address.errors.full_messages).to include("Telephone number is invalid")
       end
+
+      it 'tokenが空だと登録できない' do
+        @donation_address.token = nil
+        @donation_address.valid?
+        expect(@donation_address.errors.full_messages).to include("Token can't be blank")  
+      end
+
+
     end
   end
 end

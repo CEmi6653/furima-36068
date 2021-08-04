@@ -19,7 +19,7 @@
 
 
 - has_many :items   ##itemsテーブルとのアソシエーション
-- has_one :purchase ##購入テーブルとのアソシエーション
+- has_one :order ##購入テーブルとのアソシエーション
 
 ## itemsテーブル
 
@@ -40,7 +40,7 @@
 ### Association 
 
 -belongs_to :user
--has_one :purchase
+-has_one :order
 
 ## orderテーブル(購入テーブル)
 
@@ -54,7 +54,7 @@
 
 -belongs_to :user
 -belongs_to :item
--has_one :shipping_address
+-has_one :order_address
 
 
 ## order_address 
